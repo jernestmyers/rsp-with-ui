@@ -1,24 +1,26 @@
 // ROCK PAPER SCISSORS
 
-// sets initial scores to 0
-let userScore = 0;
-let cpuScore = 0;
-let numberDraws = 0;
-
+const cpuOptions = [`Rock`, `Paper`, `Scissors`];
 
 
 // get user selection and store under "playerSelection"
 const userChoice = document.querySelectorAll(`.userPlay`);
     let playerSelection = ``;
+    let cpuSelection = ``;
     userChoice.forEach((userChoice) => {
         userChoice.addEventListener(`click`, () => {
             playerSelection = userChoice.id;
-        }) 
+            console.log(playerSelection);
+            cpuSelection = cpuOptions[Math.floor(Math.random() * cpuOptions.length)];
+            console.log(cpuSelection);
+            playRound(playerSelection, cpuSelection);
+        })
     }) 
 
-// get computer selection
-function computerPlay() {
-    const cpuOptions = [`Rock`, `Paper`, `Scissors`];
-    let cpuSelection = Math.floor(Math.random() * cpuOptions.length);
-    return cpuSelection;
+
+function playRound(playerSelection, cpuSelection) {
+    console.log(playerSelection);
+    console.log(cpuSelection);
+    
 }
+
