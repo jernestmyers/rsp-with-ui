@@ -16,10 +16,11 @@ const userChoice = document.querySelectorAll(`.userPlay`);
             cpuSelection = cpuOptions[Math.floor(Math.random() * cpuOptions.length)];
             console.log(cpuSelection);
             playRound(playerSelection, cpuSelection);
+            // playGame(userScore, cpuScore);
         })
     }) 
 
-
+// compares user vs cpu inputs and adds +1 to respective scores
 function playRound(playerSelection, cpuSelection) {
     if (playerSelection == cpuSelection) {
         console.log(`Draw! You both threw down ${playerSelection}.`);
@@ -32,21 +33,22 @@ function playRound(playerSelection, cpuSelection) {
         userScore += 1;
         console.log(`You win! ${playerSelection} beats ${cpuSelection}.`);
         }
+        keepScore(userScore, cpuScore);
     }
 
-function playGame(playerSelection, cpuSelection) {
-    for (let round = 1; round < 6; round++) {
-        playRound(playerSelection, cpuSelection);
-        console.log(`userScore is ` + userScore);
-        console.log(`cpuScore is ` + cpuScore);
+// alerts winner of the game
+function keepScore(userScore, cpuScore) {
+        if (userScore == 2) {
+            alert(`You win!`);
+            window.location.reload();
+        } else if (cpuScore == 2) {
+            alert(`You lose!`);
+            window.location.reload();
         }
-    
-        if (userScore == 5) {
-            alert(`You win! You won ${userScore} rounds and tied ${numberDraws} rounds.`);
-        } else if (cpuScore == 5) {
-            alert(`You lose! The computer won ${cpuScore} rounds and you tied ${numberDraws} rounds.`);
-        }
-    
-        userScore = 0;
-        cpuScore = 0;
 }
+
+const newGame = document.querySelector(`#new-game`);
+    newGame.addEventListener(`click`, () => {
+        console.log(`new game`);
+        window.location.reload();
+})
