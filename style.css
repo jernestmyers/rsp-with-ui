@@ -1,0 +1,17 @@
+body {
+    font-family: 'Lexend', sans-serif;
+    background-color: #AA9C39;
+    color: #fff4aa;
+    font-size: 16px;
+}
+
+h1 {
+   font-size: 2.5em;
+   text-shadow: 1px 1px 2px #313A75;
+}
+
+button {
+    background-color: #fff4aa;
+    border: solid 2px #313A75;
+}
+
