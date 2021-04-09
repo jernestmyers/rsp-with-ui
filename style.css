@@ -13,7 +13,7 @@ h1 {
 
 button {
     background-color: #fff4aa;
-    border: solid 1px #313A75;
+    border: solid 1px black;
 }
 
 button:hover {
@@ -89,4 +89,11 @@ button:hover {
     display: flex;
 }
 
+#round-result {
+    display: flex;
+    justify-content: center;
+}
 
+#result-label {
+    padding-right: 10px;
+}
