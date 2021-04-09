@@ -42,7 +42,6 @@ button:hover {
         "score-text user-score-label cpu-score-label"
         "score-text user-score cpu-score";
     justify-content: center;
-    /* width: 40%; */
     margin: 0 auto;
     color: black;
     background-color: #fff4aa;

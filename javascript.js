@@ -33,17 +33,19 @@ function playRound(playerSelection, cpuSelection) {
         userScore += 1;
         console.log(`You win! ${playerSelection} beats ${cpuSelection}.`);
         }
+        userScoreUpdate(userScore);
+        cpuScoreUpdate(cpuScore);
         keepScore(userScore, cpuScore);
     }
 
 // alerts winner of the game
 function keepScore(userScore, cpuScore) {
-        if (userScore == 2) {
+        if (userScore == 5) {
             alert(`You win!`);
-            window.location.reload();
-        } else if (cpuScore == 2) {
+            // window.location.reload();
+        } else if (cpuScore == 5) {
             alert(`You lose!`);
-            window.location.reload();
+            // window.location.reload();
         }
 }
 
@@ -52,3 +54,20 @@ const newGame = document.querySelector(`#new-game`);
         console.log(`new game`);
         window.location.reload();
 })
+
+function userScoreUpdate(userScore) {
+const userWonGame = document.querySelector(`#user-score`);
+const userScoreUpdated = document.createElement(`p`);
+const childRemoved = userWonGame.removeChild(userWonGame.firstChild);
+userScoreUpdated.textContent = userScore;
+userWonGame.appendChild(userScoreUpdated);
+}
+
+function cpuScoreUpdate(cpuScore) {
+    const cpuWonGame = document.querySelector(`#cpu-score`);
+    const cpuScoreUpdated = document.createElement(`p`);
+    const childRemoved = cpuWonGame.removeChild(cpuWonGame.firstChild);
+    cpuScoreUpdated.textContent = cpuScore;
+    cpuWonGame.appendChild(cpuScoreUpdated);
+    }
+    
