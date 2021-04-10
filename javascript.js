@@ -16,11 +16,11 @@ const userChoice = document.querySelectorAll(`.userPlay`);
             cpuSelection = cpuOptions[Math.floor(Math.random() * cpuOptions.length)];
             console.log(cpuSelection);
             playRound(playerSelection, cpuSelection);
-            // playGame(userScore, cpuScore);
         })
     }) 
 
 // compares user vs cpu inputs and adds +1 to respective scores
+// also calls function to update scores and display round results on the page
 function playRound(playerSelection, cpuSelection) {
     if (playerSelection == cpuSelection) {
         displayDraw(playerSelection);
@@ -41,20 +41,24 @@ function playRound(playerSelection, cpuSelection) {
 // alerts winner of the game
 function keepScore(userScore, cpuScore) {
         if (userScore == 5) {
-            alert(`You win!`);
+            gameOver(userScore);
+            // alert(`You win!`);
             // window.location.reload();
         } else if (cpuScore == 5) {
-            alert(`You lose!`);
+            gameOver(userScore);
+            // alert(`You lose!`);
             // window.location.reload();
         }
 }
 
+// adds click event to New Game button to just refresh page
 const newGame = document.querySelector(`#new-game`);
     newGame.addEventListener(`click`, () => {
         console.log(`new game`);
         window.location.reload();
 })
 
+// updates score if user wins
 function userScoreUpdate(userScore) {
     const userWonGame = document.querySelector(`#user-score`);
     const userScoreUpdated = document.createElement(`p`);
@@ -63,6 +67,7 @@ function userScoreUpdate(userScore) {
     userWonGame.appendChild(userScoreUpdated);
 }
 
+// updates score if computer wins
 function cpuScoreUpdate(cpuScore) {
     const cpuWonGame = document.querySelector(`#cpu-score`);
     const cpuScoreUpdated = document.createElement(`p`);
@@ -71,6 +76,8 @@ function cpuScoreUpdate(cpuScore) {
     cpuWonGame.appendChild(cpuScoreUpdated);
 }
 
+
+// ouputs result of a draw
 function displayDraw(playerSelection) {
     const roundResult = document.querySelector(`#round-result`);
     const resultToDisplay = document.createElement(`p`);
@@ -79,6 +86,7 @@ function displayDraw(playerSelection) {
     roundResult.appendChild(resultToDisplay);
 }
 
+// outputs result of user winning
 function displayUserWins(playerSelection, cpuSelection) {
     const roundResult = document.querySelector(`#round-result`);
     const resultToDisplay = document.createElement(`p`);
@@ -87,6 +95,7 @@ function displayUserWins(playerSelection, cpuSelection) {
     roundResult.appendChild(resultToDisplay);
 }
 
+// outputs result of cpu winning
 function displayUserLoses(playerSelection, cpuSelection) {
     const roundResult = document.querySelector(`#round-result`);
     const resultToDisplay = document.createElement(`p`);
@@ -94,3 +103,36 @@ function displayUserLoses(playerSelection, cpuSelection) {
     resultToDisplay.textContent = `You lose! ${cpuSelection} beats ${playerSelection}.`;
     roundResult.appendChild(resultToDisplay);
 }
+
+// removes instructions and replaces buttons with a game over message that declares a winner
+function gameOver(userScore) {
+    function removeGameButtons(parent) {
+        while (gameOver.firstChild) {
+            gameOver.removeChild(gameOver.firstChild);
+        }
+    }
+    const gameOver = document.querySelector(`#user-choice`);
+    removeGameButtons(gameOver);
+
+    function removeInst(parent) {
+        while (removeInstructions.firstChild) {
+            removeInstructions.removeChild(removeInstructions.firstChild);
+        }
+    }
+    const removeInstructions = document.querySelector(`#instructions`);
+    removeInst(removeInstructions);
+
+    const finalMessage = document.createElement(`h1`);
+    finalMessage.classList.add(`game-over`);
+    finalMessage.textContent = `GAME OVER!`
+    const winnerDeclared = document.createElement(`h2`);
+    if (userScore == 5) {
+        winnerDeclared.textContent = `Big ups, you won!`;
+    } else {
+        winnerDeclared.textContent = `Woah woah woah, it's okay to lose. Just try again!`;
+    }
+    gameOver.appendChild(finalMessage);
+    gameOver.appendChild(winnerDeclared);
+}
+
+
