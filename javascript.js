@@ -12,9 +12,7 @@ const userChoice = document.querySelectorAll(`.userPlay`);
     userChoice.forEach((userChoice) => {
         userChoice.addEventListener(`click`, () => {
             playerSelection = userChoice.id;
-            console.log(playerSelection);
             cpuSelection = cpuOptions[Math.floor(Math.random() * cpuOptions.length)];
-            console.log(cpuSelection);
             playRound(playerSelection, cpuSelection);
         })
     }) 
@@ -22,11 +20,11 @@ const userChoice = document.querySelectorAll(`.userPlay`);
 // compares user vs cpu inputs and adds +1 to respective scores
 // also calls function to update scores and display round results on the page
 function playRound(playerSelection, cpuSelection) {
-    if (playerSelection == cpuSelection) {
+    if (playerSelection === cpuSelection) {
         displayDraw(playerSelection);
-    } else if   (cpuSelection == `Rock` && playerSelection == `Scissors` ||
-                cpuSelection == `Scissors` && playerSelection == `Paper` ||
-                cpuSelection == `Paper` && playerSelection == `Rock`) {
+    } else if   (cpuSelection === `Rock` && playerSelection === `Scissors` ||
+                cpuSelection === `Scissors` && playerSelection === `Paper` ||
+                cpuSelection === `Paper` && playerSelection === `Rock`) {
         cpuScore += 1;
         displayUserLoses(playerSelection, cpuSelection);
     } else {
@@ -40,21 +38,16 @@ function playRound(playerSelection, cpuSelection) {
 
 // alerts winner of the game
 function keepScore(userScore, cpuScore) {
-        if (userScore == 5) {
+        if (userScore === 5) {
+            gameOver(userScore);            
+        } else if (cpuScore === 5) {
             gameOver(userScore);
-            // alert(`You win!`);
-            // window.location.reload();
-        } else if (cpuScore == 5) {
-            gameOver(userScore);
-            // alert(`You lose!`);
-            // window.location.reload();
         }
 }
 
 // adds click event to New Game button to just refresh page
 const newGame = document.querySelector(`#new-game`);
     newGame.addEventListener(`click`, () => {
-        console.log(`new game`);
         window.location.reload();
 })
 
@@ -126,7 +119,7 @@ function gameOver(userScore) {
     finalMessage.classList.add(`game-over`);
     finalMessage.textContent = `GAME OVER!`
     const winnerDeclared = document.createElement(`h2`);
-    if (userScore == 5) {
+    if (userScore === 5) {
         winnerDeclared.textContent = `Big ups, you won!`;
     } else {
         winnerDeclared.textContent = `Woah woah woah, it's okay to lose. Just try again!`;
